@@ -10,6 +10,9 @@ from tkinter import simpledialog
 from tkinter import filedialog
 import tkinter.messagebox as tkMessageBox
 import pandas as pandas
+from sklearn.cluster import KMeans
+from sklearn.cluster import DBSCAN
+from sklearn import metrics
 
 try:
     from Tkinter import *
@@ -114,10 +117,10 @@ class Clustering:
             fowlkes_mallows_score=str(metrics.fowlkes_mallows_score(self.labels_true, labels))
             algoResults = algoResults+'\n'+'fowlkes_mallows_score'+' : '+fowlkes_mallows_score
             
-        silhouette_score=str(metrics.silhouette_score(input_col, labels, metric='euclidean'))
+        silhouette_score=str(metrics.silhouette_score(self.input_col, labels, metric='euclidean'))
         algoResults = algoResults+'\n'+'silhouette_score'+' : '+silhouette_score
         
-        calinski_harabaz_score=str(metrics.calinski_harabaz_score(input_col, labels))
+        calinski_harabaz_score=str(metrics.calinski_harabaz_score(self.input_col, labels))
         algoResults = algoResults+'\n'+'calinski_harabaz_score'+' : '+calinski_harabaz_score
         
         self.Label6.configure(text=algoResults)
